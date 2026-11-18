@@ -1,0 +1,3 @@
+[workspace]
+members = ["protogen", "server", "client"]
+resolver = "2"

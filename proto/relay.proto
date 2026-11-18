@@ -1,0 +1,30 @@
+syntax = "proto3";
+package relay;
+
+// The client opens the stream by sending HttpResponseMsg (empty at first)
+// and receives HttpRequestMsg values to forward to the target API.
+service RelayService {
+  rpc Forward(stream HttpResponseMsg) returns (stream HttpRequestMsg);
+}
+
+message HttpHeader {
+  string key = 1;
+  string value = 2;
+}
+
+// An HTTP request captured by the server gateway.
+message HttpRequestMsg {
+  uint64 id = 1;
+  string method = 2;
+  string path = 3;               // path + query string
+  repeated HttpHeader headers = 4;
+  bytes body = 5;
+}
+
+// The response the client returns after calling the target API.
+message HttpResponseMsg {
+  uint64 id = 1;
+  uint32 status = 2;
+  repeated HttpHeader headers = 3;
+  bytes body = 4;
+}
