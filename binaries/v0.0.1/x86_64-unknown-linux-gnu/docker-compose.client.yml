@@ -2,16 +2,17 @@ version: '3.8'
 
 services:
   relay-client:
-    image: image: ubuntu:24.04
+    image: ubuntu:20.04
     container_name: relay-client
     ports:
       - "9090:9090"  # Expose client port
     volumes:
-      - ./client:/app/client:ro
+      - ./binaries/v0.0.1/x86_64-unknown-linux-gnu/client:/app/client:ro
     command: /app/client
     environment:
       - CLIENT_PORT=9090
-      - SERVER_ADDRESS=relay-server:9090  # Assuming server is on same network (GRPC port)
+      - SERVER_ADDR=relay-server:9090  # Assuming server is on same network (GRPC port)
+      - TARGET_URL=http://relay-server:8080  # HTTP endpoint of the server
       - LOG_LEVEL=info
     depends_on:
       - relay-server

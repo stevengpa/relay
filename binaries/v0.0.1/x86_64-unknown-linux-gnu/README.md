@@ -38,7 +38,8 @@ podman-compose -f podman-compose.client.yml up -d
 
 ### Environment Variables:
 - `CLIENT_PORT` (default: 9090) - Port for the client to listen on
-- `SERVER_ADDRESS` (default: relay-server:9090) - Address of the server (GRPC port)
+- `SERVER_ADDR` (default: relay-server:9090) - Address of the server (GRPC port)
+- `TARGET_URL` (default: http://relay-server:8080) - HTTP endpoint of the server
 - `LOG_LEVEL` (default: info) - Logging level
 
 ## Ports
