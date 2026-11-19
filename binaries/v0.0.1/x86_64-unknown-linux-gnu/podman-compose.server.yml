@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   relay-server:
-    image: image: ubuntu:24.04
+    image: ubuntu:24.04
     container_name: relay-server
     ports:
       - "8080:8080"  # Expose HTTP server port
