@@ -2,13 +2,13 @@ version: '3.8'
 
 services:
   relay-server:
-    image: ubuntu:20.04
+    image: image: ubuntu:24.04
     container_name: relay-server
     ports:
       - "8080:8080"  # Expose HTTP server port
       - "9090:9090"  # Expose GRPC port
     volumes:
-      - ./binaries/v0.0.1/x86_64-unknown-linux-gnu/server:/app/server:ro
+      - ./server:/app/server:ro
     command: /app/server
     environment:
       - HTTP_PORT=8080
