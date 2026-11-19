@@ -7,7 +7,7 @@ services:
     ports:
       - "9090:9090"  # Expose client port
     volumes:
-      - ./binaries/v0.0.1/x86_64-unknown-linux-gnu/client:/app/client:ro
+      - ./client:/app/client:ro
     command: /app/client
     environment:
       - CLIENT_PORT=9090
