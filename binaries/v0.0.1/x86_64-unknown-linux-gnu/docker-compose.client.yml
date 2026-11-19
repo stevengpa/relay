@@ -8,10 +8,10 @@ services:
       - "9090:9090"  # Expose client port
     volumes:
       - ./client:/app/client:ro
-    command: /app/client
+    command: ["/app/client"]
     environment:
-      - CLIENT_PORT="9090"
-      - SERVER_ADDR="http://localhost:9090" # Assuming server is on same network (GRPC port)
-      - TARGET_URL="http://localhost:8484" # HTTP endpoint of the server
+      - CLIENT_PORT=9090
+      - SERVER_ADDR=http://YOUR_SERVER_IP:9090 # Assuming server is on same network (GRPC port)
+      - TARGET_URL=http://YOUR_TARGET_SERVER_IP:8484 # HTTP endpoint of the server | host.containers.internal
       - LOG_LEVEL=info
     restart: unless-stopped
