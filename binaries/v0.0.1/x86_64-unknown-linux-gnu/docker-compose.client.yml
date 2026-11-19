@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  relay-client:
+    image: ubuntu:20.04
+    container_name: relay-client
+    ports:
+      - "9090:9090"  # Expose client port
+    volumes:
+      - ./binaries/v0.0.1/x86_64-unknown-linux-gnu/client:/app/client:ro
+    command: /app/client
+    environment:
+      - CLIENT_PORT=9090
+      - SERVER_ADDRESS=relay-server:9090  # Assuming server is on same network (GRPC port)
+      - LOG_LEVEL=info
+    depends_on:
+      - relay-server
+    restart: unless-stopped

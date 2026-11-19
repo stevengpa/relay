@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  relay-server:
+    image: ubuntu:20.04
+    container_name: relay-server
+    ports:
+      - "8080:8080"  # Expose HTTP server port
+      - "9090:9090"  # Expose GRPC port
+    volumes:
+      - ./binaries/v0.0.1/x86_64-unknown-linux-gnu/server:/app/server:ro
+    command: /app/server
+    environment:
+      - HTTP_PORT=8080
+      - GRPC_PORT=9090
+      - LOG_LEVEL=info
+    restart: unless-stopped
