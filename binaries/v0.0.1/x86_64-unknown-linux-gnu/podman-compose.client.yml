@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  relay-client:
+    image: ubuntu:24.04
+    container_name: relay-client
+    ports:
+      - "9090:9090"  # Expose client port
+    volumes:
+      - ./client:/app/client:ro
+    command: /app/client
+    environment:
+      - CLIENT_PORT=9090
+      - SERVER_ADDR=relay-server:9090  # Assuming server is on same network (GRPC port)
+      - TARGET_URL=http://relay-server:8080  # HTTP endpoint of the server
+      - LOG_LEVEL=info
+    restart: unless-stopped

@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   relay-client:
-    image: ubuntu:20.04
+    image: ubuntu:24.04
     container_name: relay-client
     ports:
       - "9090:9090"  # Expose client port
