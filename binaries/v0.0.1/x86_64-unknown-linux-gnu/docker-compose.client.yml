@@ -14,6 +14,4 @@ services:
       - SERVER_ADDR=relay-server:9090  # Assuming server is on same network (GRPC port)
       - TARGET_URL=http://relay-server:8080  # HTTP endpoint of the server
       - LOG_LEVEL=info
-    depends_on:
-      - relay-server
     restart: unless-stopped
