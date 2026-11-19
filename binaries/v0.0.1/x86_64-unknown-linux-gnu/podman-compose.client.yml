@@ -10,8 +10,8 @@ services:
       - ./client:/app/client:ro
     command: /app/client
     environment:
-      - CLIENT_PORT=9090
-      - SERVER_ADDR=relay-server:9090  # Assuming server is on same network (GRPC port)
-      - TARGET_URL=http://relay-server:8080  # HTTP endpoint of the server
+      - CLIENT_PORT="9090"
+      - SERVER_ADDR="http://localhost:9090" # Assuming server is on same network (GRPC port)
+      - TARGET_URL="http://localhost:8484" # HTTP endpoint of the server
       - LOG_LEVEL=info
     restart: unless-stopped
