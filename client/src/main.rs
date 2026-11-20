@@ -10,7 +10,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let server_addr =
         std::env::var("SERVER_ADDR").unwrap_or_else(|_| "http://127.0.0.1:50051".into());
 
-    let mut client = RelayServiceClient::connect(server_addr).await?;
+    println!("SERVER_ADDR environment: {:?}", server_addr);
+
+    let endpoint = tonic::transport::Endpoint::from_shared(server_addr.clone())?;
+
+    println!("Connecting to: {}", endpoint.uri());
+
+    let mut client = RelayServiceClient::connect(endpoint).await?;
 
     // Outbound channel: responses to the server go through here.
     // Tonic expects a stream of HttpResponseMsg, not Result.
