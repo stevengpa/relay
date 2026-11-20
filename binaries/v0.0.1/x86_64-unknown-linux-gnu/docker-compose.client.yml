@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   relay-client:
+    platform: linux/amd64
     image: ubuntu:24.04
     container_name: relay-client
     volumes:
